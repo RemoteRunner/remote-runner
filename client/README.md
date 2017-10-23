@@ -1,8 +1,6 @@
-# mash_source
+# Remote Runner Web Version Frontend+Backend
 
-> A Vue.js project
-
-## Build Setup
+## Build Setup Frontend
 
 ``` bash
 # install dependencies
