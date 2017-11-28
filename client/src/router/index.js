@@ -13,6 +13,10 @@ import settingsForm from '@/components/settingsForm';
 import widgetsHolder from '@/components/widgetsHolder';
 import commandList from '@/components/commandList';
 import openLinkCommand from '@/components/openLinkCommand';
+import hibernateCommand from '@/components/hibernateCommand';
+import restartCommand from '@/components/restartCommand';
+import logOffCommand from '@/components/logOffCommand';
+import shutDownCommand from '@/components/shutDownCommand';
 import storageCommands from '@/components/storageCommands';
 import devicesCommands from '@/components/devicesCommands';
 import consoleCommands from '@/components/consoleCommands';
@@ -100,6 +104,26 @@ export default new Router({
     path: '/open-link',
     name: 'openLinkCommand',
     component: openLinkCommand
+  },
+  {
+    path: '/shut-down',
+    name: 'shutDownCommand',
+    component: shutDownCommand
+  },
+  {
+    path: '/hibernate',
+    name: 'hibernateCommand',
+    component: hibernateCommand
+  },
+  {
+    path: '/restart',
+    name: 'restartCommand',
+    component: restartCommand
+  },
+  {
+    path: '/log-off',
+    name: 'logOffCommand',
+    component: logOffCommand
   }
 ]
 });
