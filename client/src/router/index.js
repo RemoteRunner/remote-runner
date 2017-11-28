@@ -10,6 +10,14 @@ import About from '@/components/About';
 import registerForm from '@/components/registerForm';
 import loginForm from '@/components/loginForm';
 import settingsForm from '@/components/settingsForm';
+import widgetsHolder from '@/components/widgetsHolder';
+import commandList from '@/components/commandList';
+import storageCommands from '@/components/storageCommands';
+import devicesCommands from '@/components/devicesCommands';
+import consoleCommands from '@/components/consoleCommands';
+import processCommands from '@/components/processCommands';
+import browserCommands from '@/components/browserCommands';
+import systemCommands from '@/components/systemCommands';
 import Journal from '@/components/Journal';
 
 Vue.use(Router);
@@ -46,5 +54,46 @@ export default new Router({
     name: 'Drag',
     component: dragComponent
   },
+  {
+    path: '/commands',
+    name: 'Commands',
+    component: commandList
+  },
+  {
+    path: '/widgets',
+    name: 'Widgets',
+    component: widgetsHolder
+  },
+  {
+    path: '/storage-commands',
+    name: 'storageCommands',
+    component: storageCommands
+  },
+  {
+    path: '/devices-commands',
+    name: 'devicesCommands',
+    component: devicesCommands
+  },
+  {
+    path: '/console-commands',
+    name: 'consoleCommands',
+    component: consoleCommands
+  },
+  {
+    path: '/process-commands',
+    name: 'processCommands',
+    component: processCommands
+  },
+  {
+    path: '/browser-commands',
+    name: 'browserCommands',
+    component: browserCommands
+  }
+  ,
+  {
+    path: '/system-commands',
+    name: 'systemCommands',
+    component: systemCommands
+  }
 ]
 });
