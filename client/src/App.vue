@@ -35,8 +35,9 @@
     <router-link style="color: #159957; font-weight: 900;" :to="{ name: 'Home', params: {} }">Home |</router-link>
     <router-link style="color: #159957; font-weight: 900;" to='/settings'>Settings |</router-link>
     <router-link style="color: #159957; font-weight: 900;" to='/journal'>Journal |</router-link>
-    <router-link style="color: #159957; font-weight: 900;" to='/drag'>Drag |</router-link>
-    <router-link style="color: #159957; font-weight: 900;" to='/widgets'>Widgets</router-link>
+    <!-- <router-link style="color: #159957; font-weight: 900;" to='/drag'>Drag |</router-link> -->
+    <router-link style="color: #159957; font-weight: 900;" to='/widgets'>Widgets |</router-link>
+    <router-link style="color: #159957; font-weight: 900;" to='/admin'>Admin</router-link>
     <router-view/>
   </div>
 </template>

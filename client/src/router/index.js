@@ -31,6 +31,9 @@ import processCommands from '@/components/processCommands';
 import browserCommands from '@/components/browserCommands';
 import systemCommands from '@/components/systemCommands';
 import Journal from '@/components/Journal';
+import Admin from '@/components/Admin';
+import adminBlockUser from '@/components/adminBlockUser';
+import adminJournal from '@/components/adminJournal';
 
 Vue.use(Router);
 Vue.use(Meta);
@@ -166,6 +169,21 @@ export default new Router({
     path: '/format-drive',
     name: 'formatDriveCommand',
     component: formatDriveCommand
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: Admin
+  },
+  {
+    path: '/admin-block-user',
+    name: 'Admin',
+    component: adminBlockUser
+  },
+  {
+    path: '/admin-journal',
+    name: 'adminJournal',
+    component: adminJournal
   }
 ]
 });
