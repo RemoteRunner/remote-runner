@@ -44,15 +44,19 @@ let systemCommands = {
   methods: {
     clickHandlerShutDown: function() {
       this.$router.push("shut-down");
+      //done
     },
     clickHandlerHibernate: function() {
       this.$router.push("hibernate");
+      //done
     },
     clickHandlerLogOff: function() {
       this.$router.push("log-off");
+      //done
     },
     clickHandlerRestart: function() {
       this.$router.push("restart");
+      //done
     },
   }
 };

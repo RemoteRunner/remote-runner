@@ -14,9 +14,16 @@ import widgetsHolder from '@/components/widgetsHolder';
 import commandList from '@/components/commandList';
 import openLinkCommand from '@/components/openLinkCommand';
 import hibernateCommand from '@/components/hibernateCommand';
+import clearCacheCommand from '@/components/clearCacheCommand';
 import restartCommand from '@/components/restartCommand';
+import mouseCommand from '@/components/mouseCommand';
+import findDuplicatesCommand from "@/components/findDuplicatesCommand";
 import logOffCommand from '@/components/logOffCommand';
 import shutDownCommand from '@/components/shutDownCommand';
+import killProcessCommand from '@/components/killProcessCommand';
+import startProcessCommand from '@/components/startProcessCommand';
+import processListCommand from '@/components/processListCommand';
+import formatDriveCommand from '@/components/formatDriveCommand';
 import storageCommands from '@/components/storageCommands';
 import devicesCommands from '@/components/devicesCommands';
 import consoleCommands from '@/components/consoleCommands';
@@ -124,6 +131,41 @@ export default new Router({
     path: '/log-off',
     name: 'logOffCommand',
     component: logOffCommand
+  },
+  {
+    path: '/clear-cache',
+    name: 'clearCacheCommand',
+    component: clearCacheCommand
+  },
+  {
+    path: '/find-duplicates',
+    name: 'findDuplicatesCommand',
+    component: findDuplicatesCommand
+  },
+  {
+    path: '/mouse-command',
+    name: 'mouseCommand',
+    component: mouseCommand
+  },
+  {
+    path: '/process-kill',
+    name: 'killProcessCommand',
+    component: killProcessCommand
+  },
+  {
+    path: '/process-start',
+    name: 'startProcessCommand',
+    component: startProcessCommand
+  },
+  {
+    path: '/process-list',
+    name: 'processListCommand',
+    component: processListCommand
+  },
+  {
+    path: '/format-drive',
+    name: 'formatDriveCommand',
+    component: formatDriveCommand
   }
 ]
 });

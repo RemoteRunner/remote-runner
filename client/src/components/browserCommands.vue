@@ -23,6 +23,7 @@ let browserCommands = {
   methods: {
     clickHandlerOpenLink: function() {
       this.$router.push("open-link");
+      //done
     }
   }
 };

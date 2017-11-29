@@ -65,13 +65,16 @@ let storageCommands = {
       this.$router.push("free-space");
     },
     clickHandlerCache: function() {
-      this.$router.push("clean-cache");
+      this.$router.push("clear-cache");
+      //done
     },
     clickHandlerDrive: function() {
       this.$router.push("format-drive");
+      //done
     },
-    clickHandlerDuplicates: function() {
+    clickHandlerDuplicates: function() { 
       this.$router.push("find-duplicates");
+      //done
     }
   }
 };

@@ -36,12 +36,15 @@ let processCommands = {
   methods: {
     clickHandlerProcessList: function() {
       this.$router.push("process-list");
+      //done
     },
     clickHandlerProcessKill: function() {
       this.$router.push("process-kill");
+      //done
     },
     clickHandlerProcessStart: function() {
       this.$router.push("process-start");
+      //done
     }
   }
 };

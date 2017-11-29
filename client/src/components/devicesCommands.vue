@@ -3,45 +3,11 @@
     <h2>Devices commands</h2>
     <div class="row">
         <div class="col-12 col-md-4">
-            <div class="widget"  v-on:click="clickHandlerGetCursorPosition">
-                <p class="widget-name">get cursor position</p>
+            <div class="widget"  v-on:click="clickHandlerMouse">
+                <p class="widget-name">Mouse</p>
                 <p>Description in one short sentence, as you said.</p>
             </div>
         </div>
-        <div class="col-12 col-md-4">
-            <div class="widget"  v-on:click="clickHandlerSetCursorPosition">
-                <p class="widget-name">set cursor position</p>
-                <p>Description in one short sentence, as you said.</p>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-4">
-            <div class="widget" v-on:click="clickHandlerLeftClick">
-                <p class="widget-name">left click</p>
-                <p>Description in one short sentence, as you said.</p>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-         
-                <div class="col-12 col-md-4" >
-            <div class="widget" v-on:click="clickHandlerLeftDoubleClick">
-                <p class="widget-name">left double click</p>
-                <p>Description in one short sentence, as you said.</p>
-            </div>
-        </div>
-        <div class="col-12 col-md-4">
-            <div class="widget" v-on:click="clickHandlerRightClick">
-                <p class="widget-name">right click</p>
-                <p>Description in one short sentence, as you said.</p>
-            </div>
-        </div>
-        <!-- <div class="col-12 col-md-4">
-            <div class="widget" v-on:click="clickHandlerDuplicates">
-                <p class="widget-name">find duplicates</p>
-                <p>Description in one short sentence, as you said.</p>
-            </div>
-        </div> -->
     </div>
 </div>
 </template>
@@ -55,20 +21,9 @@ let devicesCommands = {
     return {};
   },
   methods: {
-    clickHandlerGetCursorPosition: function() {
-      this.$router.push("get-cursor-position");
-    },
-    clickHandlerSetCursorPosition: function() {
-      this.$router.push("set-cursor-position");
-    },
-    clickHandlerLeftClick: function() {
-      this.$router.push("left-click");
-    },
-    clickHandlerLeftDoubleClick: function() {
-      this.$router.push("left-double-click");
-    },
-    clickHandlerRightClick: function() {
-      this.$router.push("right-click");
+    clickHandlerMouse: function() {
+      this.$router.push("mouse-command");
+      //done
     }
   }
 };

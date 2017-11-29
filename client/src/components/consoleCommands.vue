@@ -24,6 +24,7 @@ let consoleCommands = {
   methods: {
     clickHandlerConsole: function() {
       this.$router.push("console");
+      //done
     }
   }
 };
