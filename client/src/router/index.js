@@ -34,6 +34,8 @@ import Journal from '@/components/Journal';
 import Admin from '@/components/Admin';
 import adminBlockUser from '@/components/adminBlockUser';
 import adminJournal from '@/components/adminJournal';
+import requestWidget from '@/components/requestWidget';
+import requestCommand from '@/components/requestCommand';
 
 Vue.use(Router);
 Vue.use(Meta);
@@ -184,6 +186,16 @@ export default new Router({
     path: '/admin-journal',
     name: 'adminJournal',
     component: adminJournal
+  },
+  {
+    path: '/request-widget',
+    name: 'requestWidget',
+    component: requestWidget
+  },
+  {
+    path: '/request-command',
+    name: 'requestCommand',
+    component: requestCommand
   }
 ]
 });
