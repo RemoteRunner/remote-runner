@@ -39,14 +39,26 @@
     <router-link style="color: #159957; font-weight: 900;" to='/widgets'>Widgets |</router-link>
     <router-link style="color: #159957; font-weight: 900;" to='/request-widget'>Request widget |</router-link>
     <router-link style="color: #159957; font-weight: 900;" to='/request-command'>Request command |</router-link>
-    <router-link style="color: #159957; font-weight: 900;" to='/admin'>Admin</router-link>
+    <router-link v-if="this.model.userType == 'admin'" style="color: #159957; font-weight: 900;" to='/admin'>Admin</router-link>
     <router-view/>
   </div>
 </template>
 
 <script>
 export default {
-  name: "app"
+  name: "app",
+  data() {
+    return {
+      model: {
+        userType: "admin"
+      }
+    };
+  },
+  mounted(model) {
+    // console.log(this.model.userType);
+    // this.model.userType = 'user';
+    // console.log(this.model.userType);
+  }
 };
 </script>
 

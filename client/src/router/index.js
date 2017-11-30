@@ -179,7 +179,7 @@ export default new Router({
   },
   {
     path: '/admin-block-user',
-    name: 'Admin',
+    name: 'adminBlockUser',
     component: adminBlockUser
   },
   {
