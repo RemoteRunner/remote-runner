@@ -36,14 +36,7 @@ let openLinkCommand = {
             min: 1,
             required: true,
             hint: "Minimum 1 character",
-            validator: VueFormGenerator.validators.string,
-            buttons: [
-              {
-                classes: "user-button",
-                label: "Exec",
-                onclick: function(model) {}
-              }
-            ]
+            validator: VueFormGenerator.validators.string
           }
         ]
       },

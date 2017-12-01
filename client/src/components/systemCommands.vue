@@ -71,7 +71,7 @@ export default systemCommands;
 }
 .widget {
   height: 150px;
-  border: 1px solid #aef;
+  border: 7px solid #159957;
   margin-top: 30px;
   padding: 10px;
 }

@@ -8,7 +8,7 @@
   </div>
     <div class="col-10 col-lg-6 user-form">
       <vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
-      <!-- <button class="user-button">Exec</button> -->
+      <button class="user-button">Exec</button> 
     </div>
 </div>
 </template>
@@ -36,14 +36,7 @@ let killProcessCommand = {
             min: 1,
             required: true,
             hint: "Minimum 1 character",
-            validator: VueFormGenerator.validators.string,
-            buttons: [
-              {
-                classes: "user-button",
-                label: "Exec",
-                onclick: function(model) {}
-              }
-            ]
+            validator: VueFormGenerator.validators.string
           }
         ]
       },

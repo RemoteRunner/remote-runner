@@ -8,9 +8,20 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 Vue.use(BootstrapVue);
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 
-fetch(new Request('http://rr-test-vlada.herokuapp.com/commands'))
+var myHeaders = new Headers();
+myHeaders.append('Access-Control-Request-Headers','*');
+myHeaders.append('Access-Control-Request-Method','*');
+myHeaders.append('Access-Control-Request-Headers','*');
+
+var myInit = { method: 'GET',
+               mode: 'cors',
+               cache: 'default',
+               headers: myHeaders
+            };
+
+fetch(new Request('http://localhost:5000/commands', myInit))
     .then(function(response) {
         console.log(response);
     });

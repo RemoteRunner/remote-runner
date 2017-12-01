@@ -3,12 +3,12 @@
     <div class="row">
     <div class="col-12 text-center">
     <br>
-      <h4> Fromat Drive </h4>
+      <h4> Format Drive </h4>
     </div>
   </div>
     <div class="col-10 col-lg-6 user-form">
       <vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
-      <!-- <button class="user-button">Exec</button> -->
+      <button class="user-button">Exec</button>
     </div>
 </div>
 </template>
@@ -36,14 +36,7 @@ let formatDriveCommand = {
             min: 1,
             required: true,
             hint: "Minimum 1 character",
-            validator: VueFormGenerator.validators.string,
-            buttons: [
-              {
-                classes: "user-button",
-                label: "Exec",
-                onclick: function(model) {}
-              }
-            ]
+            validator: VueFormGenerator.validators.string
           }
         ]
       },
