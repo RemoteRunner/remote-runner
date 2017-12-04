@@ -47,7 +47,6 @@
 </template>
 
 <script>
-
 export default {
   name: "app",
   data() {
@@ -63,9 +62,9 @@ export default {
     // console.log(this.model.userType);
   },
   methods: {
-    logOut: function () {
-        this.$user = undefined;
-         this.$emit('change', this.$user);
+    logOut: function() {
+      this.$user = undefined;
+      this.$emit("change", this.$user);
     }
   }
 };
@@ -188,8 +187,8 @@ div.footer a {
   font-size: 20px;
 
   color: #ffffff;
-  background: #44A4FC !important;
-  border-left: 5px solid #187FE7;
+  background: #44a4fc !important;
+  border-left: 5px solid #187fe7;
   width: 600px !important;
 
   &.warn {
@@ -198,13 +197,13 @@ div.footer a {
   }
 
   &.error {
-    background: #E54D42;
-    border-left-color: #B82E24;
+    background: #e54d42;
+    border-left-color: #b82e24;
   }
 
   &.success {
-    background: #68CD86;
-    border-left-color: #42A85F;
+    background: #68cd86;
+    border-left-color: #42a85f;
   }
 }
 
