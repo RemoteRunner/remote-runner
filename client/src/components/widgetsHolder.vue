@@ -2,42 +2,10 @@
 <div class="container">
     <h2>List of widgets</h2>
     <div class="row">
-        <div class="col-12 col-md-4">
-            <div class="widget"  v-on:click="clickHandlerStorage">
-                <p class="widget-name">Storage</p>
-                <p>Description in one short sentence, as you said.</p>
-            </div>
-        </div>
-        <div class="col-12 col-md-4" >
-            <div class="widget" v-on:click="clickHandlerConsole">
-                <p class="widget-name">Console</p>
-                <p>Description in one short sentence, as you said.</p>
-            </div>
-        </div>
-        <div class="col-12 col-md-4">
-            <div class="widget" v-on:click="clickHandlerSystem">
-                <p class="widget-name">System</p>
-                <p>Description in one short sentence, as you said.</p>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-4">
-            <div class="widget" v-on:click="clickHandlerDevices">
-                <p class="widget-name">Devices</p>
-                <p>Description in one short sentence, as you said.</p>
-            </div>
-        </div>
-        <div class="col-12 col-md-4">
-            <div class="widget" v-on:click="clickHandlerBrowser">
-                <p class="widget-name">Browser</p>
-                <p>Description in one short sentence, as you said.</p>
-            </div>
-        </div>
-        <div class="col-12 col-md-4">
-            <div class="widget" v-on:click="clickHandlerProcesses">
-                <p class="widget-name">Processes</p>
-                <p>Description in one short sentence, as you said.</p>
+       <div class="col-12 col-md-4"  v-for="w in this.widgets">
+            <div class="widget"  v-on:click="handler(w)">
+                <p class="widget-name">{{w.title}}</p>
+                <p>{{w.description}}</p>
             </div>
         </div>
     </div>
@@ -46,31 +14,29 @@
 
 <script>
 import Vue from "vue";
+import apiService from '../service/api.service.js';
 
 let widgetsHolder = {
   name: "widgetsHolder",
   data() {
-    return {};
+    return {
+        widgets: []
+    };
   },
+  created: function () {
+    console.log('we exist')
+        apiService.getWidgets()
+          .then((data) => {
+                this.widgets = data;
+          })
+          .catch((err) => {
+              this.widgets = [];
+          })
+    },
   methods: {
-    clickHandlerStorage: function() {
-      this.$router.push("storage-commands");
-    },
-    clickHandlerConsole: function() {
-      this.$router.push("console-commands");
-    },
-    clickHandlerSystem: function() {
-      this.$router.push("system-commands");
-    },
-    clickHandlerDevices: function() {
-      this.$router.push("devices-commands");
-    },
-    clickHandlerBrowser: function() {
-      this.$router.push("browser-commands");
-    },
-    clickHandlerProcesses: function() {
-      this.$router.push("process-commands");
-    },
+    handler: function(widget) {
+      this.$router.push({ name: 'widget', params: { widgetId: widget.id}});
+    }
   }
 };
 
@@ -83,10 +49,14 @@ export default widgetsHolder;
         margin-top: 20px;
     }
     .widget {
-        height: 150px;
+        height: 180px;
         border: 7px solid #159957;
         margin-top: 30px;   
         padding: 10px;
+        cursor: pointer;
+    }
+    .widget:hover{
+      background-color: lightgreen;
     }
     .widget-name {
         font-weight: bold;

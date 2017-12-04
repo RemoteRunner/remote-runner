@@ -8,7 +8,10 @@
   </div>
     <div class="col-10 col-lg-6 user-form">
       <vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
-      <button class="user-button">Log in</button>
+      <button class="user-button" v-on:click="sendRequest(model)">Log in</button>
+      <br>
+      <br>
+      <p style="color: red;":model="loginResult">{{loginResult}}</p>
     </div>
 </div>
 </template>
@@ -16,6 +19,7 @@
 <script>
 import Vue from "vue";
 import VueFormGenerator from "vue-form-generator";
+import apiService from '../service/api.service.js';
 
 Vue.use(VueFormGenerator);
 
@@ -24,9 +28,10 @@ let loginForm = {
   data() {
     return {
       model: {
-        password: "J0hnD03!x4",
-        user_name: "vlada_ty"
+        password: "",
+        user_name: ""
       },
+      loginResult: '',
 
       schema: {
         fields: [
@@ -35,7 +40,7 @@ let loginForm = {
             inputType: "text",
             label: "User Name",
             model: "user_name",
-            placeholder: "This is how you want us to call you",
+            placeholder: "Please type here your user name",
             featured: true,
             required: true,
             validator: VueFormGenerator.validators.string
@@ -45,9 +50,9 @@ let loginForm = {
             inputType: "password",
             label: "Password",
             model: "password",
-            min: 6,
+            min: 3,
             required: true,
-            hint: "Minimum 10 characters",
+            hint: "Minimum 3 characters",
             validator: VueFormGenerator.validators.string
           }
         ]
@@ -60,7 +65,19 @@ let loginForm = {
     };
   },
   methods: {
-    clickHandler: function() {}
+    sendRequest: function(data) {
+
+      apiService.login(data.user_name, data.password)
+      .then((data) => {
+     
+        Vue.prototype.$user = data;
+        this.loginResult = ''
+        this.$router.push('/widgets')
+      })
+      .catch((err) => {
+        this.loginResult = 'Sorry, you are not registered in the system.'
+      })
+    }
   }
 };
 

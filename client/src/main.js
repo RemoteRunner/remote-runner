@@ -6,25 +6,12 @@ import router from './router';
 import BootstrapVue from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
-
+import apiService from './service/api.service.js';
+import Notifications from 'vue-notification'
+ 
+Vue.use(Notifications)
 Vue.use(BootstrapVue);
 Vue.config.productionTip = false
-
-var myHeaders = new Headers();
-myHeaders.append('Access-Control-Request-Headers','*');
-myHeaders.append('Access-Control-Request-Method','*');
-myHeaders.append('Access-Control-Request-Headers','*');
-
-var myInit = { method: 'GET',
-               mode: 'cors',
-               cache: 'default',
-               headers: myHeaders
-            };
-
-fetch(new Request('http://localhost:5000/commands', myInit))
-    .then(function(response) {
-        console.log(response);
-    });
 
 /* eslint-disable no-new */
 new Vue({

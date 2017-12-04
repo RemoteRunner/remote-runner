@@ -10,7 +10,10 @@ import About from '@/components/About';
 import registerForm from '@/components/registerForm';
 import loginForm from '@/components/loginForm';
 import settingsForm from '@/components/settingsForm';
+
 import widgetsHolder from '@/components/widgetsHolder';
+import widgetCommandsHolder from '@/components/widgetCommandsHolder';
+
 import commandList from '@/components/commandList';
 import openLinkCommand from '@/components/openLinkCommand';
 import hibernateCommand from '@/components/hibernateCommand';
@@ -24,12 +27,8 @@ import killProcessCommand from '@/components/killProcessCommand';
 import startProcessCommand from '@/components/startProcessCommand';
 import processListCommand from '@/components/processListCommand';
 import formatDriveCommand from '@/components/formatDriveCommand';
-import storageCommands from '@/components/storageCommands';
-import devicesCommands from '@/components/devicesCommands';
-import consoleCommands from '@/components/consoleCommands';
-import processCommands from '@/components/processCommands';
-import browserCommands from '@/components/browserCommands';
-import systemCommands from '@/components/systemCommands';
+
+
 import Journal from '@/components/Journal';
 import Admin from '@/components/Admin';
 import adminBlockUser from '@/components/adminBlockUser';
@@ -42,7 +41,7 @@ Vue.use(Meta);
 
 export default new Router({
   routes: [{
-    path: '/home',
+    path: '/',
     name: 'Home',
     component: Home
   },
@@ -82,59 +81,29 @@ export default new Router({
     component: widgetsHolder
   },
   {
-    path: '/storage-commands',
-    name: 'storageCommands',
-    component: storageCommands
-  },
-  {
-    path: '/devices-commands',
-    name: 'devicesCommands',
-    component: devicesCommands
-  },
-  {
-    path: '/console-commands',
-    name: 'consoleCommands',
-    component: consoleCommands
-  },
-  {
-    path: '/process-commands',
-    name: 'processCommands',
-    component: processCommands
-  },
-  {
-    path: '/browser-commands',
-    name: 'browserCommands',
-    component: browserCommands
-  }
-  ,
-  {
-    path: '/system-commands',
-    name: 'systemCommands',
-    component: systemCommands
-  },
-  {
-    path: '/open-link',
+    path: '/widgets/:widgetId/commands/OpenLink/:commandId',
     name: 'openLinkCommand',
     component: openLinkCommand
   },
   {
-    path: '/shut-down',
-    name: 'shutDownCommand',
-    component: shutDownCommand
+    path: '/widgets/:widgetId/commands/ShutDown/:commandId',
+    name: 'ShutDown',
+    component: shutDownCommand,
+    props: true
   },
   {
-    path: '/hibernate',
-    name: 'hibernateCommand',
+    path: '/widgets/:widgetId/commands/Hibernate/:commandId',
+    name: 'Hibernate',
     component: hibernateCommand
   },
   {
-    path: '/restart',
-    name: 'restartCommand',
+    path: '/widgets/:widgetId/commands/Restart/:commandId',
+    name: 'Restart',
     component: restartCommand
   },
   {
-    path: '/log-off',
-    name: 'logOffCommand',
+    path: '/widgets/:widgetId/commands/LogOff/:commandId',
+    name: 'LogOff',
     component: logOffCommand
   },
   {
@@ -143,8 +112,8 @@ export default new Router({
     component: clearCacheCommand
   },
   {
-    path: '/find-duplicates',
-    name: 'findDuplicatesCommand',
+    path: '/widgets/:widgetId/commands/FindDuplicates/:commandId',
+    name: 'FindDuplicates',
     component: findDuplicatesCommand
   },
   {
@@ -196,6 +165,12 @@ export default new Router({
     path: '/request-command',
     name: 'requestCommand',
     component: requestCommand
+  },
+  {
+    path: '/widgets/:widgetId/commands',
+    name: 'widget',
+    component: widgetCommandsHolder,
+    props: true
   }
 ]
 });

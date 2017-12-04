@@ -3,12 +3,15 @@
     <div class="row">
     <div class="col-12 text-center">
     <br>
-      <h4> logOff </h4>
+      <h4> Welcome to {{this.$router.history.current.name}} !</h4>
     </div>
   </div>
     <div class="col-10 col-lg-6 user-form">
-      <vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
-      <!-- <button class="user-button">Exec</button> -->
+      <p>Log out off your host PC using this command. Please check all the data: </p>
+      <p><b>Host</b>: {{this.$user.host}}</p>
+      <p><b>Port</b>: {{this.$user.port}}</p>
+      <p><b>What will happen</b>: your session will be over</p>
+      <button v-on:click="handler" class="user-button">Execute</button>
     </div>
 </div>
 </template>
@@ -16,6 +19,7 @@
 <script>
 import Vue from "vue";
 import VueFormGenerator from "vue-form-generator";
+import apiService from '../service/api.service.js';
 
 Vue.use(VueFormGenerator);
 
@@ -36,14 +40,7 @@ let logOffCommand = {
             // min: 1,
             // required: true,
             // hint: "Minimum 1 character",
-            validator: VueFormGenerator.validators.string,
-            buttons: [
-              {
-                classes: "user-button",
-                label: "Exec",
-                onclick: function(model) {}
-              }
-            ]
+            validator: VueFormGenerator.validators.string
           }
         ]
       },
@@ -54,8 +51,29 @@ let logOffCommand = {
       }
     };
   },
+  created: function () {
+    console.log('bum');
+  },
   methods: {
-    clickHandler: function() {}
+    handler: function() {
+      let data = {
+          user_id: this.$user.id,
+          command_id: this.$router.history.current.params.commandId,
+          params: {}
+        };
+
+      apiService.sendCommand(data)
+          .then((data) => {
+              this.$notify({
+                title: 'Logging of was executed',
+                text: 'We will notify you about the results info.',
+                type: 'warning'
+            });
+          })
+          .catch((err) => {
+              this.widgets = [];
+          })
+    }
   }
 };
 

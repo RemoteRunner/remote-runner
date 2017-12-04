@@ -27,24 +27,27 @@
           </div>
         </div>
         <div class="col-0 col-lg-4">
-          <i class="fa fa-laptop fa-6x big" aria-hidden="true"></i>
+          <i class="fa fa-laptop fa-6x big" v-model="this.$user" aria-hidden="true"></i>
         </div>
       </div>
     </div>
     <br>
-    <router-link style="color: #159957; font-weight: 900;" :to="{ name: 'Home', params: {} }">Home |</router-link>
-    <router-link style="color: #159957; font-weight: 900;" to='/settings'>Settings |</router-link>
-    <router-link style="color: #159957; font-weight: 900;" to='/journal'>Journal |</router-link>
-    <!-- <router-link style="color: #159957; font-weight: 900;" to='/drag'>Drag |</router-link> -->
-    <router-link style="color: #159957; font-weight: 900;" to='/widgets'>Widgets |</router-link>
-    <router-link style="color: #159957; font-weight: 900;" to='/request-widget'>Request widget |</router-link>
-    <router-link style="color: #159957; font-weight: 900;" to='/request-command'>Request command |</router-link>
-    <router-link v-if="this.model.userType == 'admin'" style="color: #159957; font-weight: 900;" to='/admin'>Admin</router-link>
+    <router-link v-if="this.$user" style="color: #159957; font-weight: 900;" :to="{ name: 'Home', params: {} }">Home |</router-link>
+    <router-link v-if="this.$user" style="color: #159957; font-weight: 900;" to='/settings'>Settings |</router-link>
+    <router-link v-if="this.$user"  style="color: #159957; font-weight: 900;" to='/journal'>Journal |</router-link>
+    <!-- <router-link v-if="this.$user"  style="color: #159957; font-weight: 900;" to='/drag'>Drag |</router-link> -->
+    <router-link v-if="this.$user"  style="color: #159957; font-weight: 900;" to='/widgets'>Widgets |</router-link>
+    <router-link v-if="this.$user"  style="color: #159957; font-weight: 900;" to='/request-widget'>Request widget |</router-link>
+    <router-link v-if="this.$user"  style="color: #159957; font-weight: 900;" to='/request-command'>Request command |</router-link>
+    <router-link v-if="this.$user && this.$user.role == 'admin'" style="color: #159957; font-weight: 900;" to='/admin'>Admin |</router-link>
+    <router-link v-if="this.$user"  style="color: #159957; font-weight: 900;" v-on:click.native="logOut()" to='/'> Log Out </router-link>
     <router-view/>
+    <notifications position="top center" classes="vue-notification-rr" width="90%" type="warning"/>
   </div>
 </template>
 
 <script>
+
 export default {
   name: "app",
   data() {
@@ -58,6 +61,12 @@ export default {
     // console.log(this.model.userType);
     // this.model.userType = 'user';
     // console.log(this.model.userType);
+  },
+  methods: {
+    logOut: function () {
+        this.$user = undefined;
+         this.$emit('change', this.$user);
+    }
   }
 };
 </script>
@@ -169,6 +178,34 @@ div.footer a {
 
 .links {
   font-size: unset;
+}
+
+.vue-notification-rr {
+  padding: 10px;
+  margin: 0 5px 5px;
+  height: 100%;
+
+  font-size: 20px;
+
+  color: #ffffff;
+  background: #44A4FC !important;
+  border-left: 5px solid #187FE7;
+  width: 600px !important;
+
+  &.warn {
+    background: #ffb648;
+    border-left-color: #f48a06;
+  }
+
+  &.error {
+    background: #E54D42;
+    border-left-color: #B82E24;
+  }
+
+  &.success {
+    background: #68CD86;
+    border-left-color: #42A85F;
+  }
 }
 
 body,
