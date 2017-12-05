@@ -43,7 +43,8 @@ export default new Router({
   routes: [{
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    props: true
   },
   {
     path: '/register',
@@ -82,7 +83,7 @@ export default new Router({
   },
   {
     path: '/widgets/:widgetId/commands/OpenLink/:commandId',
-    name: 'openLinkCommand',
+    name: 'OpenLink',
     component: openLinkCommand
   },
   {
@@ -117,8 +118,8 @@ export default new Router({
     component: findDuplicatesCommand
   },
   {
-    path: '/mouse-command',
-    name: 'mouseCommand',
+    path: '/widgets/:widgetId/commands/MouseClick/:commandId',
+    name: 'MouseClick',
     component: mouseCommand
   },
   {

@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-10 col-lg-6 user-form">
       <vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
-      <button class="user-button">Update</button>
+      <button class="user-button" v-on:click="handler(model)">Update</button>
     </div>
   </div>
 </div>
@@ -20,6 +20,7 @@
 <script>
 import Vue from "vue";
 import VueFormGenerator from "vue-form-generator";
+import apiService from '../service/api.service.js';
 
 Vue.use(VueFormGenerator);
 
@@ -28,13 +29,12 @@ let settingsForm = {
   data() {
     return {
       model: {
-        "user_id": "John",
-        "password": "123445",
-        "user_name": "John",
-        "notifications": "true",
-        "widgets": ['aaa', 'bbb', 'ccc'],
-        "port": 5234,
-        "host": "192.168.124.56",
+        "user_id": this.$user.id,
+        "password": this.$user.password,
+        "user_name": this.$user.user_name,
+        "notifications": this.notifications,
+        "port": this.$user.port,
+        "host": this.$user.host,
         "role": 'user'   
       },
 
@@ -74,7 +74,17 @@ let settingsForm = {
             inputType: "text",
             label: "Host Adress",
             model: "host",
+            readonly: true,        
             placeholder: "Host for connection to you host PC",
+            validator: VueFormGenerator.validators.string
+          },
+          {
+            type: "input",
+            inputType: "text",
+            label: "Port",
+            model: "port",
+            readonly: true,        
+            placeholder: "Port for connection to you host PC",
             validator: VueFormGenerator.validators.string
           },
           {
@@ -93,7 +103,20 @@ let settingsForm = {
     };
   },
   methods: {
-    clickHandler: function() {}
+    handler: function(model) {
+        apiService.updateUser(model)
+          .then((data) => {
+          console.log(data);
+               this.$notify({
+                title: 'User Settings were successfully updated',
+                text: '',
+                type: 'warning'
+            });
+          })
+          .catch((err) => {
+              this.widgets = [];
+          })
+    }
   }
 };
 

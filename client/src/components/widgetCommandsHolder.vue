@@ -3,7 +3,7 @@
     <h2>List of commands</h2>
     <div class="row">
        <div class="col-12 col-md-4"  v-for="c in this.commands">
-            <div class="command"  v-on:click="handler(c)">
+            <div class="command"  v-on:click="handler(c)" v-if="!['LeftClick', 'RightClick', 'LeftDoubleClick'].includes(c.title)">
                 <p class="widget-name">{{c.title}}</p>
                 <p>{{c.description}}</p>
             </div>
@@ -29,6 +29,7 @@ let widgetCommandsHolder = {
      apiService.getWidgetCommands()
           .then((data) => {
                this.commands = data.filter(c => c.widget_id === widgetId);
+               
           })
           .catch((err) => {
               this.widgets = [];

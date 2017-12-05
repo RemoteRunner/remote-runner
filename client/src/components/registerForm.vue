@@ -10,7 +10,7 @@
   
     <div class="col-10 col-lg-6 user-form">
       <vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
-      <button class="user-button">Register</button>
+      <button class="user-button" v-on:click=handler(model)>Register</button>
     </div>
 
 </div>
@@ -19,6 +19,7 @@
 <script>
 import Vue from "vue";
 import VueFormGenerator from "vue-form-generator";
+import apiService from '../service/api.service.js';
 
 Vue.use(VueFormGenerator);
 
@@ -91,7 +92,22 @@ let registerForm = {
     };
   },
   methods: {
-    clickHandler: function() {}
+    handler: function(model) {
+       apiService.register(model)
+          .then((data) => {
+          console.log(data);
+               Vue.prototype.$user = data;
+               this.$notify({
+                title: 'User was successfully registered',
+                text: 'Please proceed with login',
+                type: 'warning'
+               });
+               window.$.trigger('user-logged', data);
+          })
+          .catch((err) => {
+              this.widgets = [];
+          })
+    }
   }
 };
 

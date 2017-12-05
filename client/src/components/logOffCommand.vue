@@ -11,7 +11,7 @@
       <p><b>Host</b>: {{this.$user.host}}</p>
       <p><b>Port</b>: {{this.$user.port}}</p>
       <p><b>What will happen</b>: your session will be over</p>
-      <button v-on:click="handler" class="user-button">Execute</button>
+      <button v-on:click="handler(); InvokeCSharpWithFormValues(this, model)" class="user-button">Execute</button>
     </div>
 </div>
 </template>
@@ -55,6 +55,18 @@ let logOffCommand = {
     console.log('bum');
   },
   methods: {
+    InvokeCSharpWithFormValues: function (elm, model) {
+          let data = {
+            command: 'this.$router.history.current.name',
+            params: {}
+          };
+
+          let qs = "params=" + JSON.stringify(data);
+
+          console.log(qs);
+
+          location.href = "hybrid:" + "SendCommand" + "?" + qs;
+    },
     handler: function() {
       let data = {
           user_id: this.$user.id,

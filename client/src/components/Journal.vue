@@ -7,7 +7,6 @@
       <vuetable-pagination ref="paginationTop" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
 
       <vuetable ref="vuetable"
-        api-url="https://vuetable.ratiw.net/api/users"
         :fields="fields"
         pagination-path=""
         :per-page="10"
@@ -32,6 +31,7 @@ import moment from 'moment';
 import Vuetable from "vuetable-2/src/components/Vuetable";
 import VuetablePagination from "vuetable-2/src/components/VuetablePagination";
 import VuetablePaginationInfo from "vuetable-2/src/components/VuetablePaginationInfo";
+import apiService from '../service/api.service.js';
 
 let myJournal = {
   components: {
@@ -43,59 +43,54 @@ let myJournal = {
     return {
       fields: [
         {
-          name: 'name',
-          sortField: 'name',
+          name: 'record_id',
+          sortField: 'record_id',
         }, 
         {
-          name: 'email',
-          sortField: 'email'
+          name: 'date',
+          sortField: 'date'
         },
         {
-          name: 'birthdate',
-          sortField: 'birthdate',
-          titleClass: 'center aligned',
-          dataClass: 'center aligned',
-          callback: 'formatDate|DD-MM-YYYY'
+          name: 'status',
+          sortField: 'status',
         },
         {
-          name: 'nickname',
-          sortField: 'nickname',
-          callback: 'allcap'
+          name: 'command',
+          sortField: 'command'
         },
         {
-          name: 'gender',
-          sortField: 'gender',
-          titleClass: 'center aligned',
-          dataClass: 'center aligned',
-          callback: 'genderLabel'
+          name: 'params',
+          sortField: 'params'
         },
-        {
-          name: 'salary',
-          sortField: 'salary',
-          titleClass: 'center aligned',
-          dataClass: 'right aligned',
-          callback: 'formatNumber'
-        }
       ],
       sortOrder: [
         {
-          field: 'email',
-          sortField: 'email',
+          field: 'record_id',
+          sortField: 'record_id',
           direction: 'asc'
         }
       ]
     }
   },
+  created: function () {
+      apiService.getUserJournal(this.$user.id)
+          .then((data) => {
+              console.log(this);
+              this.tableData(data);
+          })
+          .catch((err) => {
+              this.setData([])
+          })
+  },
   methods: {
   getData () {
-      this.$http.get('http://rr-test-vlada.herokuapp.com/commands').then(response => {
-
-        // get body data
-        console.log(response.body);
-
-      }, response => {
-        // error callback
-      });
+      tapiService.getUserJournal(this.$user.id)
+          .then((data) => {
+              return data;
+          })
+          .catch((err) => {
+              this.setData([])
+          })
   },
     allcap (value) {
       return value.toUpperCase()

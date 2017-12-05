@@ -8,7 +8,7 @@
           <!-- <quick-menu2></quick-menu2> -->
         </div>
       </div>
-      <div class="small-logo">
+      <div class="small-logo" v-model="model">
         <i style="color: darkblue; font-size:40px; vertical-align: middle;" class="fa fa-laptop fa-6x" aria-hidden="true"></i>
         <p style="color: darkblue; font-size:30px; display:inline-block;font-weight: 700;">RR</p>
       </div>
@@ -32,16 +32,19 @@
       </div>
     </div>
     <br>
-    <router-link v-if="this.$user" style="color: #159957; font-weight: 900;" :to="{ name: 'Home', params: {} }">Home |</router-link>
-    <router-link v-if="this.$user" style="color: #159957; font-weight: 900;" to='/settings'>Settings |</router-link>
-    <router-link v-if="this.$user"  style="color: #159957; font-weight: 900;" to='/journal'>Journal |</router-link>
-    <!-- <router-link v-if="this.$user"  style="color: #159957; font-weight: 900;" to='/drag'>Drag |</router-link> -->
-    <router-link v-if="this.$user"  style="color: #159957; font-weight: 900;" to='/widgets'>Widgets |</router-link>
-    <router-link v-if="this.$user"  style="color: #159957; font-weight: 900;" to='/request-widget'>Request widget |</router-link>
-    <router-link v-if="this.$user"  style="color: #159957; font-weight: 900;" to='/request-command'>Request command |</router-link>
-    <router-link v-if="this.$user && this.$user.role == 'admin'" style="color: #159957; font-weight: 900;" to='/admin'>Admin |</router-link>
-    <router-link v-if="this.$user"  style="color: #159957; font-weight: 900;" v-on:click.native="logOut()" to='/'> Log Out </router-link>
-    <router-view/>
+    <router-link v-if="this.$user || this.model.user" style="color: #159957; font-weight: 900;" :to="{ name: 'Home', params: {user: this.$user} }">Home |</router-link>
+    <router-link v-if="this.$user || this.model.user" style="color: #159957; font-weight: 900;" to='/settings'>Settings |</router-link>
+    <router-link v-if="this.$user || this.model.user"  style="color: #159957; font-weight: 900;" to='/journal'>Journal |</router-link>
+    <!-- <router-link v-if="this.$user || this.model.user"  style="color: #159957; font-weight: 900;" to='/drag'>Drag |</router-link> -->
+    <router-link v-if="this.$user || this.model.user"  style="color: #159957; font-weight: 900;" to='/widgets'>Widgets |</router-link>
+    <router-link v-if="this.$user || this.model.user"  style="color: #159957; font-weight: 900;" to='/request-widget'>Request widget |</router-link>
+    <router-link v-if="this.$user || this.model.user"  style="color: #159957; font-weight: 900;" to='/request-command'>Request command |</router-link>
+    <router-link v-if="this.$user && this.$user.role == 'admin' || this.model.user && this.model.user.role == 'admin'" style="color: #159957; font-weight: 900;" to='/admin'>Admin |</router-link>
+    <router-link v-if="this.$user || this.model.user"  style="color: #159957; font-weight: 900;" v-on:click.native="logOut()" :to="{path: '/', params:{user: undefined}}"> Log Out </router-link>
+   
+    <router-link v-if="this.$user === undefined && this.model.user === undefined" style="color: #159957; font-weight: 900;" to='/login'>Login |</router-link>
+    <router-link v-if="this.$user === undefined && this.model.user === undefined" style="color: #159957; font-weight: 900;" to='/register'>Register </router-link>
+     <router-view/>
     <notifications position="top center" classes="vue-notification-rr" width="90%" type="warning"/>
   </div>
 </template>
@@ -53,19 +56,27 @@ export default {
   data() {
     return {
       model: {
-        userType: "admin"
+        userType: "admin",
+        user: undefined
       }
     };
   },
-  mounted(model) {
-    // console.log(this.model.userType);
-    // this.model.userType = 'user';
-    // console.log(this.model.userType);
+  created() {
+    console.log(this.model);
+
+    window.addEventListener("user-logged", (e) => { 
+          this.model.user = e.detail;
+          console.log(e);
+    });
+
+    console.log(this.user);
   },
   methods: {
     logOut: function () {
         this.$user = undefined;
-         this.$emit('change', this.$user);
+        this.model.user = undefined;
+        console.log($);
+        console.log(window.$);
     }
   }
 };

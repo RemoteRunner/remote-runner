@@ -12,7 +12,7 @@
       <p><b>Port</b>: {{this.$user.port}}</p>
       <p><b>What will happen</b>: the new link will be opened</p>
       <vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
-      <button class="user-button" v-on:click="handler(model)">Execute</button>
+      <button class="user-button" v-on:click="handler(model);InvokeCSharpWithFormValues(this, model)">Execute</button>
     </div>
 </div>
 </template>
@@ -53,6 +53,18 @@ let openLinkCommand = {
     };
   },
   methods: {
+  InvokeCSharpWithFormValues: function (elm, model) {
+          let data = {
+            command: this.$router.history.current.name,
+            params: {link: model.link}
+          };
+
+          let qs = "params=" + JSON.stringify(data);
+
+          console.log(qs);
+
+          location.href = "hybrid:" + "SendCommand" + "?" + qs;
+    },
     handler: function(model) {
       let data = {
           user_id: this.$user.id,

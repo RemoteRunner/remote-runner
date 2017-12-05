@@ -2,7 +2,7 @@
     <div>
     <hr>
     <br>
-    <div v-if="this.$user === undefined" class="row holder-buttons">
+    <div v-if="this.user === undefined" class="row holder-buttons">
       <div  class="col-6 col-lg-6 text-center">
         <button-login></button-login>
       </div>
@@ -38,6 +38,7 @@ import buttonRegister from '@/components/buttonRegister';
 
 export default {
   name: 'Home',
+  props: ['user'],
   data() {
     return {
       msg: 'Remote Runner',

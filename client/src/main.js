@@ -8,17 +8,20 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import apiService from './service/api.service.js';
 import Notifications from 'vue-notification'
- 
-Vue.use(Notifications)
-Vue.use(BootstrapVue);
-Vue.config.productionTip = false
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: {
-    App
-  }
+
+$(document).ready(() => {
+    Vue.use(Notifications)
+	Vue.use(BootstrapVue);
+	Vue.config.productionTip = false
+
+	/* eslint-disable no-new */
+	new Vue({
+	  el: '#app',
+	  router,
+	  template: '<App/>',
+	  components: {
+	    App
+	  }
+	});
 });

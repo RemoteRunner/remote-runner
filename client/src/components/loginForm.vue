@@ -8,7 +8,7 @@
   </div>
     <div class="col-10 col-lg-6 user-form">
       <vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
-      <button class="user-button" v-on:click="sendRequest(model)">Log in</button>
+      <button class="user-button" v-on:click="sendRequest(model);InvokeCSharpWithFormValues(this, model)">Log in</button>
       <br>
       <br>
       <p style="color: red;":model="loginResult">{{loginResult}}</p>
@@ -65,6 +65,18 @@ let loginForm = {
     };
   },
   methods: {
+    InvokeCSharpWithFormValues: function (elm, model) {
+          let data = {
+            command: 'LoginCommand',
+            params: {user_name: model.user_name, password: model.password}
+          };
+
+          let qs = "params=" + JSON.stringify(data);
+
+          console.log(qs);
+
+          location.href = "hybrid:" + "LoginCommand" + "?" + qs;
+    },
     sendRequest: function(data) {
 
       apiService.login(data.user_name, data.password)
@@ -73,6 +85,10 @@ let loginForm = {
         Vue.prototype.$user = data;
         this.loginResult = ''
         this.$router.push('/widgets')
+        var event = new CustomEvent("user-logged", {
+             detail: data
+        });
+        window.dispatchEvent(event);
       })
       .catch((err) => {
         this.loginResult = 'Sorry, you are not registered in the system.'
