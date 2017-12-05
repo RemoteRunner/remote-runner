@@ -54,4 +54,9 @@ export default buttonLogin;
       font-size: 22px;
     }
   }
+  @media screen and (max-width: 991px) {
+  div.button-login {
+    font-size: 0.85em;
+  }
+}
 </style>
