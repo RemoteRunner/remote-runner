@@ -41,7 +41,7 @@
     <router-link v-if="this.$user || this.model.user"  style="color: #159957; font-weight: 900;" to='/request-command'>Request command |</router-link>
     <router-link v-if="this.$user && this.$user.role == 'admin' || this.model.user && this.model.user.role == 'admin'" style="color: #159957; font-weight: 900;" to='/admin'>Admin |</router-link>
     <router-link v-if="this.$user || this.model.user"  style="color: #159957; font-weight: 900;" v-on:click.native="logOut()" :to="{path: '/', params:{user: undefined}}"> Log Out </router-link>
-   
+
     <router-link v-if="this.$user === undefined && this.model.user === undefined" style="color: #159957; font-weight: 900;" to='/login'>Login |</router-link>
     <router-link v-if="this.$user === undefined && this.model.user === undefined" style="color: #159957; font-weight: 900;" to='/register'>Register </router-link>
      <router-view/>
@@ -50,7 +50,6 @@
 </template>
 
 <script>
-
 export default {
   name: "app",
   data() {
@@ -64,7 +63,7 @@ export default {
   created() {
     console.log(this.model);
 
-    window.addEventListener("user-logged", (e) => { 
+    window.addEventListener("user-logged", (e) => {
           this.model.user = e.detail;
           console.log(e);
     });
@@ -199,8 +198,8 @@ div.footer a {
   font-size: 20px;
 
   color: #ffffff;
-  background: #44A4FC !important;
-  border-left: 5px solid #187FE7;
+  background: #44a4fc !important;
+  border-left: 5px solid #187fe7;
   width: 600px !important;
 
   &.warn {
@@ -209,13 +208,13 @@ div.footer a {
   }
 
   &.error {
-    background: #E54D42;
-    border-left-color: #B82E24;
+    background: #e54d42;
+    border-left-color: #b82e24;
   }
 
   &.success {
-    background: #68CD86;
-    border-left-color: #42A85F;
+    background: #68cd86;
+    border-left-color: #42a85f;
   }
 }
 

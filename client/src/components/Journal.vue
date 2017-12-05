@@ -86,7 +86,7 @@ let myJournal = {
   getData () {
       tapiService.getUserJournal(this.$user.id)
           .then((data) => {
-              return data;
+              this.tableData(data);
           })
           .catch((err) => {
               this.setData([])
