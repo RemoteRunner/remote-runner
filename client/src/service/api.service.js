@@ -1,6 +1,48 @@
 const DOMAIN = 'https://rr-test-vlada.herokuapp.com';
 //const DOMAIN = 'http://localhost:5000';
 
+
+let HOST = DOMAIN.replace(/^https/, 'wss')
+let ws = new WebSocket(HOST);
+
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-full-width",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "2000",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "show",
+  "hideMethod": "hide"
+}
+
+
+window.addEventListener("user-logged", (e) => {
+	console.log('User logged');
+      var $user_id = e.detail.id;
+
+      ws.onmessage = function (event) {
+		console.log(event.data);
+		  if (event.data !== []) {
+		  	var eventData = JSON.parse(event.data);
+		  	eventData.forEach((rec) => {
+		  		if (rec.user_id === $user_id) {
+		  			toastr.success("command: " + rec.command + " \n status: " +  rec.params.status + "\n date: " + rec.date + "\n data: " + rec.params.data);
+		  		}
+		  	})
+		  }
+	  };
+});
+
+
+
 let myHeaders = new Headers();
 myHeaders.append('Access-Control-Request-Headers','*');
 myHeaders.append('Access-Control-Request-Method','*');

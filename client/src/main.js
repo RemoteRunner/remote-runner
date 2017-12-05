@@ -10,18 +10,16 @@ import apiService from './service/api.service.js';
 import Notifications from 'vue-notification'
 
 
-$(document).ready(() => {
-    Vue.use(Notifications)
-	Vue.use(BootstrapVue);
-	Vue.config.productionTip = false
+Vue.use(Notifications)
+Vue.use(BootstrapVue);
+Vue.config.productionTip = false
 
-	/* eslint-disable no-new */
-	new Vue({
-	  el: '#app',
-	  router,
-	  template: '<App/>',
-	  components: {
-	    App
-	  }
-	});
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  template: '<App/>',
+  components: {
+    App
+  }
 });
