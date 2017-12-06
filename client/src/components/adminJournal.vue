@@ -1,13 +1,10 @@
 <template>
 <div class="container">
+<h4>List of commands by all users</h4>
   <div class="row">
     <div class="col-12">
-
-      <vuetable-pagination-info ref="paginationInfoTop"></vuetable-pagination-info>
-      <vuetable-pagination ref="paginationTop" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
-
       <vuetable ref="vuetable"
-        api-url="https://vuetable.ratiw.net/api/users"
+        :api-url="link"
         :fields="fields"
         pagination-path=""
         :per-page="10"
@@ -15,10 +12,6 @@
         :sort-order="sortOrder"
         @vuetable:pagination-data="onPaginationData">
       </vuetable>
-
-      <vuetable-pagination-info ref="paginationInfo"></vuetable-pagination-info>
-      <vuetable-pagination ref="pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
-
     </div>
   </div>
 </div>
@@ -41,41 +34,32 @@ let adminJournal = {
   },
   data() {
     return {
+      link: "https://rr-test-vlada.herokuapp.com/api/journal-user-table",
       fields: [
         {
-          name: "name",
-          sortField: "name"
+          name: 'record_id',
+          sortField: 'record_id',
+        }, 
+        {
+          name: 'user_name',
+          sortField: 'user_name'
         },
         {
-          name: "email",
-          sortField: "email"
+          name: 'command',
+          sortField: 'command'
         },
         {
-          name: "birthdate",
-          sortField: "birthdate",
-          titleClass: "center aligned",
-          dataClass: "center aligned",
-          callback: "formatDate|DD-MM-YYYY"
+          name: 'date',
+          sortField: 'date'
         },
         {
-          name: "nickname",
-          sortField: "nickname",
-          callback: "allcap"
+          name: 'params',
+          sortField: 'params'
         },
         {
-          name: "gender",
-          sortField: "gender",
-          titleClass: "center aligned",
-          dataClass: "center aligned",
-          callback: "genderLabel"
+          name: 'data',
+          sortField: 'data'
         },
-        {
-          name: "salary",
-          sortField: "salary",
-          titleClass: "center aligned",
-          dataClass: "right aligned",
-          callback: "formatNumber"
-        }
       ],
       sortOrder: [
         {

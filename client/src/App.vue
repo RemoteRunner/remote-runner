@@ -32,7 +32,7 @@
       </div>
     </div>
     <br>
-    <router-link v-if="this.$user || this.model.user" style="color: #159957; font-weight: 900;" :to="{ name: 'Home', params: {user: this.$user} }">Home |</router-link>
+    <router-link style="color: #159957; font-weight: 900;" :to="{ name: 'Home', params: {user: this.$user} }">Home |</router-link>
     <router-link v-if="this.$user || this.model.user" style="color: #159957; font-weight: 900;" to='/settings'>Settings |</router-link>
     <router-link v-if="this.$user || this.model.user"  style="color: #159957; font-weight: 900;" to='/journal'>Journal |</router-link>
     <!-- <router-link v-if="this.$user || this.model.user"  style="color: #159957; font-weight: 900;" to='/drag'>Drag |</router-link> -->
@@ -45,7 +45,7 @@
     <router-link v-if="this.$user === undefined && this.model.user === undefined" style="color: #159957; font-weight: 900;" to='/login'>Login |</router-link>
     <router-link v-if="this.$user === undefined && this.model.user === undefined" style="color: #159957; font-weight: 900;" to='/register'>Register </router-link>
      <router-view/>
-    <notifications position="top center" classes="vue-notification-rr" width="90%" type="warning"/>
+    <notifications position="top center" classes="vue-notification-rr" width="90%" type="warning" duration="5000"/>
   </div>
 </template>
 

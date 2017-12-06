@@ -5,13 +5,19 @@
         <div class="col-12 col-md-4">
             <div class="widget"  v-on:click="clickHandlerAdminJournal">
                 <p class="widget-name">Journal</p>
-                <p>Description in one short sentence, as you said.</p>
+                <p>By seeing this Journal you can look after all the commands made by users.</p>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="widget"  v-on:click="clickHandlerAdminUser">
+                <p class="widget-name">Users List</p>
+                <p>Please see all users displayed here.</p>
             </div>
         </div>
         <div class="col-12 col-md-4" >
             <div class="widget" v-on:click="clickHandlerAdminBlockUser">
                 <p class="widget-name">Block user</p>
-                <p>Description in one short sentence, as you said.</p>
+                <p>If there is a violation made, please block user here</p>
             </div>
         </div>
     </div>
@@ -20,6 +26,7 @@
 
 <script>
 import Vue from "vue";
+
 
 let adminHolder = {
   name: "adminHolder",
@@ -32,6 +39,9 @@ let adminHolder = {
     },
     clickHandlerAdminBlockUser: function() {
       this.$router.push("admin-block-user");
+    },
+    clickHandlerAdminUser: function () {
+      this.$router.push("Users");
     }
   }
 };

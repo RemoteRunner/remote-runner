@@ -35,6 +35,7 @@ import adminBlockUser from '@/components/adminBlockUser';
 import adminJournal from '@/components/adminJournal';
 import requestWidget from '@/components/requestWidget';
 import requestCommand from '@/components/requestCommand';
+import Users from '@/components/Users'
 
 Vue.use(Router);
 Vue.use(Meta);
@@ -65,6 +66,11 @@ export default new Router({
     path: '/journal',
     name: 'Journal',
     component: Journal
+  },
+  {
+    path: '/users',
+    name: 'Users',
+    component: Users
   },
   {
     path: '/drag',

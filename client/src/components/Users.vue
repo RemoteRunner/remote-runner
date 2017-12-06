@@ -1,7 +1,7 @@
 <template>
 <div class="container">
 <br>
-<h4>This is a list of executed commands on your PC </h4>
+<h4>This is a list of users </h4>
   <div class="row">
     <div class="col-12">
       <vuetable ref="vuetable"
@@ -28,7 +28,7 @@ import VuetablePagination from "vuetable-2/src/components/VuetablePagination";
 import VuetablePaginationInfo from "vuetable-2/src/components/VuetablePaginationInfo";
 import apiService from '../service/api.service.js';
 
-let myJournal = {
+let users = {
   components: {
     Vuetable,
     VuetablePagination,
@@ -36,31 +36,31 @@ let myJournal = {
   },
   data () {
     return {
-      link: "https://rr-test-vlada.herokuapp.com/api/journal-user-table?user_id=" + this.$user.id,
+      link: "https://rr-test-vlada.herokuapp.com/api/users-table",
       fields: [
         {
-          name: 'record_id',
-          sortField: 'record_id',
+          name: 'id',
+          sortField: 'id',
         }, 
         {
-          name: 'command',
-          sortField: 'command'
+          name: 'user_name',
+          sortField: 'user_name'
         },
         {
-          name: 'status',
-          sortField: 'status',
+          name: 'password',
+          sortField: 'password',
         },
         {
-          name: 'date',
-          sortField: 'date'
+          name: 'port',
+          sortField: 'port'
         },
         {
-          name: 'params',
-          sortField: 'params'
+          name: 'host',
+          sortField: 'host'
         },
         {
-          name: 'data',
-          sortField: 'data'
+          name: 'role',
+          sortField: 'role'
         },
       ],
       sortOrder: [
@@ -116,8 +116,8 @@ let myJournal = {
   }
 };
 
-Vue.component("journal", myJournal);
-export default myJournal;
+Vue.component("users", users);
+export default users;
 </script>
 
 <style media="screen">

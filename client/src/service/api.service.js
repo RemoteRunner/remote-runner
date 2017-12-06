@@ -1,9 +1,5 @@
-//const DOMAIN = 'https://rr-test-vlada.herokuapp.com';
-const DOMAIN = 'http://localhost:5000';
-
-
-let HOST = DOMAIN.replace(/^https/, 'wss')
-let ws = new WebSocket(HOST);
+const DOMAIN = 'https://rr-test-vlada.herokuapp.com';
+//const DOMAIN = 'http://localhost:5000';
 
 toastr.options = {
   "closeButton": false,
@@ -28,14 +24,20 @@ window.addEventListener("user-logged", (e) => {
 	console.log('User logged');
       var $user_id = e.detail.id;
 
+
+	let HOST = DOMAIN.replace(/^https/, 'wss') + '/' + $user_id,
+		ws = new WebSocket(HOST),
+		showedRecords = [];
+
       ws.onmessage = function (event) {
-		console.log(event.data);
 		  if (event.data !== []) {
 		  	var eventData = JSON.parse(event.data);
 		  	eventData.forEach((rec) => {
-		  		if (rec.user_id === $user_id) {
-		  			toastr.success("command: " + rec.command + " \n status: " +  rec.params.status + "\n date: " + rec.date + "\n data: " + rec.params.data);
+		  		if (rec.user_id === $user_id && !showedRecords.includes(rec.record_id)) {
+		  			showedRecords.push(rec.record_id);
+		  			toastr.success("command: " + rec.command + " \n status: " +  rec.params.status + "\n date: " + rec.date + "\n data: " + rec.params.data || '');
 		  		}
+		  		
 		  	})
 		  }
 		  ws.send(JSON.stringify({user_id: $user_id}));
@@ -107,6 +109,12 @@ class ApiService {
     .then((resp) => {
     	return resp.json();
     }) // Transform the data into json
+  }
+
+  blockUser(user_id) {
+  	let params = {method: 'PUT', body: JSON.stringify(user_id), mode: 'cors',headers: myHeaders};
+
+  	return fetch(new Request(DOMAIN + '/api/block-user', params))
   }
 }
 

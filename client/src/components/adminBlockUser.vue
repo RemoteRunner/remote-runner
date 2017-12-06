@@ -16,6 +16,7 @@
 <script>
 import Vue from "vue";
 import VueFormGenerator from "vue-form-generator";
+import apiService from '../service/api.service.js';
 
 Vue.use(VueFormGenerator);
 
@@ -40,8 +41,24 @@ let adminBlockUser = {
             buttons: [
               {
                 classes: "user-button",
-                label: "Exec",
-                onclick: function(model) {}
+                label: "Execute",
+                onclick: function(model) {
+                    apiService.blockUser({id: model.user_id})
+                    .then((data) => {
+                        this.$notify({
+                          title: 'Shutting down was executed',
+                          text: 'We will notify you about the results info.',
+                          type: 'warning'
+                      });
+                    })
+                    .catch((err) => {
+                        this.$notify({
+                          title: 'Error. User is not blocked',
+                          text: '',
+                          type: 'warning'
+                      });
+                    })
+                }
               }
             ]
           }
