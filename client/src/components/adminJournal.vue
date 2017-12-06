@@ -2,7 +2,7 @@
 <div class="container">
 <h4>List of commands by all users</h4>
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 holder-admin-journal">
       <vuetable ref="vuetable"
         :api-url="link"
         :fields="fields"
@@ -113,5 +113,7 @@ export default adminJournal;
 </script>
 
 <style media="screen">
-
+div.holder-admin-journal {
+  overflow: auto;
+}
 </style>

@@ -3,7 +3,7 @@
 <br>
 <h4>This is a list of executed commands on your PC </h4>
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 holder-journal">
       <vuetable ref="vuetable"
         :api-url="link"
         :fields="fields"
@@ -121,5 +121,7 @@ export default myJournal;
 </script>
 
 <style media="screen">
-
+div.container div.row div.holder-journal {
+  overflow: auto;
+}
 </style>
