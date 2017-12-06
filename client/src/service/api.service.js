@@ -1,5 +1,5 @@
-const DOMAIN = 'https://rr-test-vlada.herokuapp.com';
-//const DOMAIN = 'http://localhost:5000';
+//const DOMAIN = 'https://rr-test-vlada.herokuapp.com';
+const DOMAIN = 'http://localhost:5000';
 
 
 let HOST = DOMAIN.replace(/^https/, 'wss')
@@ -38,6 +38,7 @@ window.addEventListener("user-logged", (e) => {
 		  		}
 		  	})
 		  }
+		  ws.send(JSON.stringify({user_id: $user_id}));
 	  };
 });
 
